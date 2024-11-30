@@ -1,0 +1,35 @@
+<?taglib uri="http://www.zkoss.org/dsp/web/core" prefix="c"?>
+<window viewModel="@id('vm') @init('pe.edu.nh.mvvm.MenuViewModel')">
+	<style src="/resources/css/style.css"/>
+	
+	<hlayout spacing="0"> 
+		<menubar id="menubar" orient="vertical" autodrop="true" style="height:100%">
+			<menu label="${c:l('menu.clientes')}">
+				<menupopup>
+					<menuitem label="${c:l('menu.clientes.listado')}"							  
+							  onClick="@command('navigate', page='cliente.zul', titulo='Listado de Usuarios')" />
+							  
+					<menuitem label="${c:l('menu.clientes.dinamico')}"							  
+							  onClick="@command('navigate', page='dinamico.zul', titulo='Formulario Dinamico')" />							  
+							  
+				</menupopup>				
+			</menu>
+			<menuitem label="${c:l('menu.treemodel')}" onClick="@command('navigate', page='treemodel.zul', titulo='Tree Model')" />
+			<menuitem label="${c:l('menu.gifs')}" onClick="@command('navigate', page='gifs.zul', titulo='Busqueda Imagenes')" />
+			<menuitem label="${c:l('menu.chart')}" onClick="@command('navigate', page='chart.zul', titulo='Grafico Estadistico')" />
+			<menuitem label="${c:l('menu.acercade')}" onClick='alert("Desarrollado por New Horizons")'/>
+			<menuitem label="${c:l('menu.salir')}"/>						
+		</menubar>
+		
+		<div id="container" sclass="container">
+			<vlayout id="product_list" width="100%">
+				<label class="mo_head" value="@bind(vm.titulo)"/>
+				<separator bar="true"></separator>
+				<hlayout spacing="10px">
+					<include id="dynamicContent" src="@bind(vm.fuente)"/>
+				</hlayout>
+			</vlayout>
+		</div>
+		
+	</hlayout>
+</window>
